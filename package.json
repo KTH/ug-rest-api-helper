@@ -1,0 +1,77 @@
+{
+  "name": "@kth/ug-redis-api-call",
+  "version": "4.0.0",
+  "description": "Node.js module to make JSON calls against APIs.",
+  "main": "index.js",
+  "automaticPublish": "true",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KTH/ug-redis-api-call"
+  },
+  "author": {
+    "name": "KTH",
+    "email": "infosys@kth.se",
+    "url": "https://github.com/KTH"
+  },
+  "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "jest": "jest",
+    "jest:watch": "jest --watch",
+    "jest:watch-update": "jest --watch -u",
+    "build": "./build.sh",
+    "prepare": "if [ -f ./node_modules/.bin/husky ]; then husky install; fi",
+    "prettier:all": "prettier --write \"**/*.js\""
+  },
+  "keywords": [
+    "api",
+    "kth",
+    "json"
+  ],
+  "dependencies": {
+    "form-data": "^4.0.0",
+    "node-fetch": "^2.6.6",
+    "url-join": "^4.0.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@kth/eslint-config-kth": "^3.0.6",
+    "@moebius/http-graceful-shutdown": "^1.1.0",
+    "@types/jest": "^27.0.3",
+    "body-parser": "^1.19.1",
+    "eslint": "^8.12.0",
+    "express": "^4.17.2",
+    "express-form-data": "^2.0.17",
+    "husky": "^7.0.4",
+    "jest": "^27.4.5",
+    "jest-extended": "^1.2.0",
+    "prettier": "^2.5.1",
+    "pretty-quick": "^3.1.2",
+    "redis-mock": "^0.56.3"
+  },
+  "// (prettier)": "configuration version 2020-06-15 - might also reside in .prettierrc.json",
+  "prettier": {
+    "arrowParens": "avoid",
+    "printWidth": 120,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "// (jest)": "configuration version 2020-06-15 (API+NPM) - might also reside as module.exports in jest.config.js",
+  "jest": {
+    "clearMocks": true,
+    "globalSetup": "./test/mock-api/server.js",
+    "globalTeardown": "./test/mock-api/teardown.js",
+    "notifyMode": "failure-change",
+    "setupFilesAfterEnv": [
+      "jest-extended/all"
+    ],
+    "testEnvironment": "node",
+    "verbose": true,
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test-utils/",
+      "/test/mock-api/"
+    ]
+  }
+}
