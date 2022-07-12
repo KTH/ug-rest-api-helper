@@ -24,5 +24,6 @@ Along with the filter attribute name data needs to be send like `'sst'`. In case
 # FilterType
 Along with the `filterAttributeName` and `filterData`,  `filterType` needs to be passed as well like `contains` or `startsWith`
 
-Check the link below to see what are the supported filter by UG
+Check the link below to see what are the supported filter by UG.
+
 https://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part2-url-conventions/odata-v4.0-errata03-os-part2-url-conventions-complete.html#_Toc453752358
