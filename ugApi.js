@@ -3,6 +3,7 @@ const axios = require('axios').default
 
 const { getClientToken } = require('./tokenCall')
 
+// data set endpoints
 const USERS_END_POINT = '/users'
 const GROUPS_END_POINT = '/groups'
 // filter types
@@ -13,6 +14,13 @@ const EQUALS = 'eq'
 const MEMBER_OF = 'memberOf'
 const IN = 'in'
 
+/**
+ * This will generate filter query in string based on the parameters passed
+ * @param {*} filterType Filter type is needed like 'contains', 'startsWith' etc.
+ * @param {*} filterAttributeName Attribute name is need using which the filteraion perform
+ * @param {*} filterData Data is needed to apply filter on given attribute name
+ * @returns Will return filter query in string
+ */
 function _getFilterString(filterType, filterAttributeName, filterData) {
     let filterQueryString = '?$filter='
     switch (filterType) {
