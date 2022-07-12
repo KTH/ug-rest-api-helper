@@ -1,6 +1,6 @@
 {
   "name": "@kth/ug-redis-api-call",
-  "version": "4.0.0",
+  "version": "1.0.0",
   "description": "Node.js module to make JSON calls against APIs.",
   "main": "index.js",
   "automaticPublish": "true",
@@ -32,7 +32,8 @@
     "form-data": "^4.0.0",
     "node-fetch": "^2.6.6",
     "url-join": "^4.0.1",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "axios": "^0.26.1"
   },
   "devDependencies": {
     "@kth/eslint-config-kth": "^3.0.6",
@@ -60,8 +61,6 @@
   "// (jest)": "configuration version 2020-06-15 (API+NPM) - might also reside as module.exports in jest.config.js",
   "jest": {
     "clearMocks": true,
-    "globalSetup": "./test/mock-api/server.js",
-    "globalTeardown": "./test/mock-api/teardown.js",
     "notifyMode": "failure-change",
     "setupFilesAfterEnv": [
       "jest-extended/all"
@@ -69,9 +68,7 @@
     "testEnvironment": "node",
     "verbose": true,
     "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/test-utils/",
-      "/test/mock-api/"
+      "/node_modules/"
     ]
   }
 }

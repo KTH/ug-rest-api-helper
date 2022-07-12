@@ -1,32 +1,26 @@
 /* eslint-disable func-names */
-const api = require('./api')
+const { default: axios } = require('axios')
 
-module.exports = (function () {
-  function TokenCall(options) {
-    this.options = options || {}
-    this.options.tokenEndpoint = options.tokenEndpoint
-    this.options.clientKey = options.clientKey
-    this.options.clientSecret = options.clientSecret
+const GRANT_TYPE = 'client_credential'
+const CONTENT_TYPE = 'application/x-www-form-urlencoded'
+const TOKEN_METHOD_TYPE = 'POST'
+
+async function _getClientToken({ tokenEndPoint, clientKey, clientSecret, scope }) {
+  const urlOptions = {
+    method: TOKEN_METHOD_TYPE,
+    url: tokenEndPoint,
+    headers: { 'content-type': CONTENT_TYPE },
+    data: new URLSearchParams({
+      grant_type: GRANT_TYPE,
+      client_id: clientKey,
+      client_secret: clientSecret,
+      scope: scope,
+    }),
   }
 
-  function factory(options) {
-    return new TokenCall(options)
-  }
-  TokenCall.prototype.getClientToken = function (onSuccess, onError) {
-    const parsedTokenUrl = new URL(this.options.tokenEndpoint)
-    const TokenApi = api({
-      host: parsedTokenUrl.host,
-      port: parsedTokenUrl.port,
-      path: parsedTokenUrl.pathname,
-      query: {
-        grant_type: 'client_credential',
-        client_id: this.options.clientKey,
-        client_secret: this.options.clientSecret,
-      },
-    })
+  return await axios.request(urlOptions)
+}
 
-    TokenApi.request(onSuccess, onError)
-  }
-
-  return factory
-})()
+module.exports = {
+  getClientToken: _getClientToken,
+}
