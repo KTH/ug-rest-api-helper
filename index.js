@@ -1,4 +1,4 @@
 module.exports = {
     ugApi: require('./ugApi'),
-    tokenCall: require('./tokenCal')
+    tokenCall: require('./tokenCall')
 }
