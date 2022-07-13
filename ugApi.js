@@ -56,7 +56,7 @@ function _getFilterString(filterType, filterAttributeName, filterData) {
 
 /**
  * This will fetch data from UG
- * @param fetchUsers If this flag is true then this function will fetch users data otherwise groups data
+ * @param dataSet Name of the data set whether it is '/users' or '/groups'
  * @param token If token is passed then this will not generate new token. It will use this token to fetch data
  * @param tokenFetchOptions For generation of new token. Token options are needed
  * @param ugURL This url is needed to fetch data from UG
@@ -66,7 +66,7 @@ function _getFilterString(filterType, filterAttributeName, filterData) {
  * @param filterQuery Whole filter query can also be applied if filter attribute name, data and type is not defined
  * @returns Will return data from desired data set either 'users' or 'groups'
  */
-async function _filterDataByType({ fetchUsers, token, tokenFetchOptions, ugURL, subscriptionKey, filterAttributeName, filterType, filterData, filterQuery }) {
+async function _filterDataByType({ dataSet, token, tokenFetchOptions, ugURL, subscriptionKey, filterAttributeName, filterType, filterData, filterQuery }) {
     if (!token ) {
         const tokenResponse = await getClientToken(tokenFetchOptions)
         if(tokenResponse) {
@@ -80,9 +80,11 @@ async function _filterDataByType({ fetchUsers, token, tokenFetchOptions, ugURL, 
     } else if (filterQuery) {
         filterQueryInString = filterQuery
     }
+    const url = ugURL + dataSet + filterQueryInString
     const options = {
         method: METHOD_GET,
-        url: ugURL + fetchUsers ? USERS_END_POINT + filterQueryInString : GROUPS_END_POINT + filterQueryInString,
+        url,
+        baseURL: ugURL,
         headers: {
             Authorization: `Bearer ${token}`,
             'Ocp-Apim-Subscription-Key': subscriptionKey,
