@@ -5,7 +5,7 @@ Hold services to retrive data from UG Rest Api
 This project has the implementation of call UG rest API. It will fetch users and groups data.
 
 # Fetch UG Data
-UG rest API requires authentication token to send back data. If token is passed then new token will not get generated. Then need to pass data set name either `users` or `groups`.
+UG rest API requires authentication token to send back data. If token is passed then new token will not get generated. Then need to pass data set name either `/users` or `/groups`.
 
 If token is not passed then new token will get generated. For that need to send `token_end_point`, `client_id`, `client_secret`. 
 
