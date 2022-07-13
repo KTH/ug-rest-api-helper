@@ -3,9 +3,6 @@ const axios = require('axios').default
 
 const { getClientToken } = require('./tokenCall')
 
-// data set endpoints
-const USERS_END_POINT = '/users'
-const GROUPS_END_POINT = '/groups'
 // filter types
 const METHOD_GET = 'GET'
 const CONTAINS = 'contains'
@@ -25,15 +22,14 @@ function _getFilterString(filterType, filterAttributeName, filterData) {
     let filterQueryString = '?$filter='
     switch (filterType) {
         case CONTAINS:
-            filterQueryString += `${CONTAINS}(${filterAttributeName},'${filterData}'`
+            filterQueryString += `${CONTAINS}(${filterAttributeName},'${filterData}')`
             break
         case STARTS_WITH:
-            filterQueryString += `${STARTS_WITH}(${filterAttributeName},'${filterData}'`
+            filterQueryString += `${STARTS_WITH}(${filterAttributeName},'${filterData}')`
             break
         case EQUALS:
             filterQueryString += `${filterAttributeName} ${EQUALS} '${filterData}'`
             break
-        case MEMBER_OF:
         case IN:
             let filterDataInString = ''
             if (Array.isArray(filterData)) {
@@ -62,6 +58,7 @@ function _getFilterString(filterType, filterAttributeName, filterData) {
  * @param ugURL This url is needed to fetch data from UG
  * @param subscriptionKey This key is needed for the authentication to azure portal
  * @param filterAttributeName Attribute name that will apply on filter query attribute
+ * @param filterType Filter should contain filter condition keyword like 'contains', 'startsWith' etc.
  * @param filterData Attribute data that will apply on filter query
  * @param filterQuery Whole filter query can also be applied if filter attribute name, data and type is not defined
  * @returns Will return data from desired data set either 'users' or 'groups'
