@@ -1,5 +1,5 @@
 const axios = require('axios')
-const { fetchDataByType } = require('./ugApi')
+const { fetchDataByDataSet } = require('./ugApi')
 
 jest.mock('axios')
 
@@ -7,7 +7,7 @@ jest.mock('axios')
 describe('Perform ug Redis call to get data', () => {
     test('check users data without any filters', async () => {
         axios.get.mockResolvedValueOnce({ data: [] })
-        await fetchDataByType({
+        await fetchDataByDataSet({
             tokenFetchOptions: {
                 tokenEndPoint: '',
                 clientKey: '',
@@ -23,7 +23,7 @@ describe('Perform ug Redis call to get data', () => {
 
     test('check users data with filter query', async () => {
         axios.get.mockResolvedValueOnce({ data: [] })
-        await fetchDataByType({
+        await fetchDataByDataSet({
             tokenFetchOptions: {
                 tokenEndPoint: '',
                 clientKey: '',
@@ -40,7 +40,7 @@ describe('Perform ug Redis call to get data', () => {
 
     test('check users data with filter attributes', async () => {
         axios.get.mockResolvedValueOnce({ data: [] })
-        await fetchDataByType({
+        await fetchDataByDataSet({
             tokenFetchOptions: {
                 tokenEndPoint: '',
                 clientKey: '',
@@ -58,7 +58,7 @@ describe('Perform ug Redis call to get data', () => {
     })
     test('check users data with filter attributes and with filter type equals', async () => {
         axios.get.mockResolvedValueOnce({ data: [] })
-        await fetchDataByType({
+        await fetchDataByDataSet({
             tokenFetchOptions: {
                 tokenEndPoint: '',
                 clientKey: '',
@@ -76,7 +76,7 @@ describe('Perform ug Redis call to get data', () => {
     })
     test('check users data with filter attributes filter type In', async () => {
         axios.get.mockResolvedValueOnce({ data: [] })
-        await fetchDataByType({
+        await fetchDataByDataSet({
             tokenFetchOptions: {
                 tokenEndPoint: '',
                 clientKey: '',
@@ -94,7 +94,7 @@ describe('Perform ug Redis call to get data', () => {
     })
     test('check groups data without any filters', async () => {
         axios.get.mockResolvedValueOnce({ data: [] })
-        await fetchDataByType({
+        await fetchDataByDataSet({
             tokenFetchOptions: {
                 tokenEndPoint: '',
                 clientKey: '',
@@ -109,7 +109,7 @@ describe('Perform ug Redis call to get data', () => {
     })
     test('check groups data with filter query', async () => {
         axios.get.mockResolvedValueOnce({ data: [] })
-        await fetchDataByType({
+        await fetchDataByDataSet({
             tokenFetchOptions: {
                 tokenEndPoint: '',
                 clientKey: '',
@@ -126,7 +126,7 @@ describe('Perform ug Redis call to get data', () => {
 
     test('check groups data with filter attributes', async () => {
         axios.get.mockResolvedValueOnce({ data: [] })
-        await fetchDataByType({
+        await fetchDataByDataSet({
             tokenFetchOptions: {
                 tokenEndPoint: '',
                 clientKey: '',

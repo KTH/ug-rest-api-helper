@@ -63,7 +63,7 @@ function _getFilterString(filterType, filterAttributeName, filterData) {
  * @param filterQuery Whole filter query can also be applied if filter attribute name, data and type is not defined
  * @returns Will return data from desired data set either 'users' or 'groups'
  */
-async function _filterDataByType({ dataSet, token, tokenFetchOptions, ugURL, subscriptionKey, filterAttributeName, filterType, filterData, filterQuery }) {
+async function _filterDataByDataSet({ dataSet, token, tokenFetchOptions, ugURL, subscriptionKey, filterAttributeName, filterType, filterData, filterQuery }) {
     if (!token ) {
         const tokenResponse = await getClientToken(tokenFetchOptions)
         if(tokenResponse) {
@@ -97,5 +97,5 @@ async function _filterDataByType({ dataSet, token, tokenFetchOptions, ugURL, sub
 }
 
 module.exports = {
-    fetchDataByType: _filterDataByType
+    fetchDataByDataSet: _filterDataByDataSet
 }
