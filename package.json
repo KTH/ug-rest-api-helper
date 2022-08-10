@@ -60,7 +60,7 @@
     "setupFilesAfterEnv": [
       "jest-extended/all"
     ],
-    "testEnvironment": "node",
+    "testEnvironment": "jsdom",
     "verbose": true,
     "coveragePathIgnorePatterns": [
       "/node_modules/"
