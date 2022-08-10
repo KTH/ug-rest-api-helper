@@ -8,7 +8,6 @@ const METHOD_GET = 'GET'
 const CONTAINS = 'contains'
 const STARTS_WITH = 'startsWith'
 const EQUALS = 'eq'
-const MEMBER_OF = 'memberOf'
 const IN = 'in'
 
 /**
@@ -40,7 +39,7 @@ function _getFilterString(filterType, filterAttributeName, filterData) {
             } else {
                 filterDataInString += `'${filterData}'`
             }
-            filterQueryString += `${MEMBER_OF} ${IN} (${filterDataInString})`
+            filterQueryString += `${filterAttributeName} ${IN} (${filterDataInString})`
             break
         default:
             filterQueryString = ''
@@ -65,8 +64,8 @@ function _getFilterString(filterType, filterAttributeName, filterData) {
  */
 async function _filterDataByDataSet({ dataSet, token, tokenFetchOptions, ugURL, subscriptionKey, filterAttributeName, filterType, filterData, filterQuery }) {
     if (!token ) {
-        const tokenResponse = await getClientToken(tokenFetchOptions)
-        if(tokenResponse) {
+        const access_token = await getClientToken(tokenFetchOptions)
+        if(access_token) {
             token = access_token
         }
     }
