@@ -1,7 +1,7 @@
 const { default: axios } = require('axios')
 
 // constants
-const GRANT_TYPE = 'client_credential'
+const GRANT_TYPE = 'client_credentials'
 const CONTENT_TYPE = 'application/x-www-form-urlencoded'
 const TOKEN_METHOD_TYPE = 'POST'
 
@@ -53,7 +53,8 @@ async function getClientToken({ tokenEndPoint, clientKey, clientSecret, scope })
     }
     const authenticationResponse = await axios.request(urlOptions)
     if (authenticationResponse) {
-      const { access_token } = authenticationResponse
+      const { data } = authenticationResponse
+      const { access_token } = data
       token = access_token
     }
   }
