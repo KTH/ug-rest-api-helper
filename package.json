@@ -1,6 +1,6 @@
 {
   "name": "@kth/ug-redis-api-call",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node.js module to make JSON calls against APIs.",
   "main": "index.js",
   "automaticPublish": "true",
@@ -60,7 +60,7 @@
     "setupFilesAfterEnv": [
       "jest-extended/all"
     ],
-    "testEnvironment": "jsdom",
+    "testEnvironment": "node",
     "verbose": true,
     "coveragePathIgnorePatterns": [
       "/node_modules/"
