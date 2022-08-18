@@ -1,12 +1,12 @@
 {
   "name": "@kth/ug-rest-api",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "description": "Node.js module to make JSON calls against APIs.",
   "main": "index.js",
   "automaticPublish": "true",
   "repository": {
     "type": "git",
-    "url": "https://github.com/KTH/ug-redis-api-call"
+    "url": "https://github.com/KTH/ug-rest-api"
   },
   "author": {
     "name": "KTH",
