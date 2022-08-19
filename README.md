@@ -1,7 +1,7 @@
-# ug-redis-api-call
+# ug-rest-api
 Hold services to retrive data from UG Rest Api
 
-# Agenda UG Redis Api Call
+# Agenda UG Rest Api
 This project has the implementation of call UG rest API. It will fetch users and groups data.
 
 # Fetch UG Data
