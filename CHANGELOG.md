@@ -2,8 +2,8 @@
 
 All notable changes for major version updates will be documented here.
 
-## 4.0.0
+## 1.0.3
 
-Name change kth-node-api-call -> @kth/api-call
+Name change @kth/ug-redis-api-call -> @kth/ug-rest-api
 
-Using node-fetch instead of deprecated request module.
+Using axios to request data.
