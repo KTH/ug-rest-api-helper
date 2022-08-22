@@ -10,10 +10,9 @@ describe('Perform token call to get authentication token', () => {
   test('check get client authentication function', async () => {
     axios.post.mockResolvedValueOnce({ data: {} })
     await getClientToken({
-      tokenEndPoint: '',
-      clientKey: '',
+      ugTokenURL: '',
+      clientId: '',
       clientSecret: '',
-      scope: '',
     })
     expect(axios.post).pass('Token Fetch call succeed')
   })

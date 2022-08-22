@@ -4,6 +4,7 @@ const { default: axios } = require('axios')
 const GRANT_TYPE = 'client_credentials'
 const CONTENT_TYPE = 'application/x-www-form-urlencoded'
 const TOKEN_METHOD_TYPE = 'POST'
+const SCOPE = 'openid'
 
 // token attribute to store to avoid recalling authentication call if it's not expired
 let token = null
@@ -28,22 +29,21 @@ let token = null
 /**
  * This will get new access token if token is not expired
  * @param tokenEndPoint Token end point is needed to get token
- * @param clientKey Client id is needed to authenticate client
+ * @param clientId Client id is needed to authenticate client
  * @param clientSecret Client secret is needed to authenticate client
- * @param scope scope is optional
  * @returns Will return whole token response. In response access_token needs to be extracted
  */
-async function getClientToken({ tokenEndPoint, clientKey, clientSecret, scope }) {
+async function getClientToken({ ugTokenURL, clientId, clientSecret }) {
   if (isTokenExpired(token)) {
     const urlOptions = {
       method: TOKEN_METHOD_TYPE,
-      url: tokenEndPoint,
+      url: ugTokenURL,
       headers: { 'content-type': CONTENT_TYPE },
       data: new URLSearchParams({
         grant_type: GRANT_TYPE,
-        client_id: clientKey,
+        client_id: clientId,
         client_secret: clientSecret,
-        scope: scope,
+        scope: SCOPE,
       }),
     }
     const authenticationResponse = await axios.request(urlOptions)
