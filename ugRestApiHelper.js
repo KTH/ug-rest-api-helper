@@ -28,13 +28,18 @@ const initConnectionProperties = ({ ugURL, clientId, clientSecret, ugTokenURL, s
  * @param {*} expandMembers This flag will indicate whether members are needed along with groups
  * @returns Will return groups data based on the groupName, operator
  */
-async function getUGGroupsByGroupName(groupName, operatorToUseInFilter, expandMembers) {
+ async function getUGGroupsByGroupName(groupName, operatorToUseInFilter, expandMembers) {
     const access_token = await getClientToken(ugConnection)
+    let expandMembersQueryInString = ''
     let filterQueryInString = new Filter(GROUP_ATTRIBUTE_NAME_FOR_FILTER_QUERY, operatorToUseInFilter, groupName).filterQueryInString
     if (expandMembers) {
-        filterQueryInString += '&$expand=members'
+        if(filterQueryInString !== '') {
+            expandMembersQueryInString = '&$expand=members'
+        } else {
+            expandMembersQueryInString = '?$expand=members'
+        }
     }
-    const completeUGURLToFetchGroups = ugConnection.ugURL + '/' + GROUPS_DATA_SET_NAME + filterQueryInString
+    const completeUGURLToFetchGroups = ugConnection.ugURL + '/' + GROUPS_DATA_SET_NAME + filterQueryInString + expandMembersQueryInString
     return await fetchData(access_token, completeUGURLToFetchGroups)
 }
 
