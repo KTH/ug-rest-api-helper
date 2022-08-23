@@ -13,7 +13,7 @@ In `ugRestApiHelper` , connection properties needs to be set using `initConnecti
 4. `ugURL` needs to pass. This will be used while fetching UG data.
 5. `subscriptionKey` needs to pass. (Optional)
 
-Note: Make sure `ugURL` is correct and authenicates the `subscriptionKey` that is passed.
+Note: Make sure `ugURL` is correct and authenticates the `subscriptionKey` that is passed.
 
 If token is not expired then Api will use existing token to fetch the data otherwise it will generate a new token.
 
@@ -36,7 +36,7 @@ For user to fetch there is one method.
 1. getUGUsers
 This method will receive `userFilterAttributeName` which indicates property name like 'givenName', 'kthid' etc, `operatorToUseInFilter` like 'eq', 'contains', 'startswith' etc, `userFilterAttributeValue` like 'Joakim' (this will be the filter value to filter out the data)
 
-# Opertors supported so far
+# Operators supported so far
 There are few filter operators that are supported so far.
 1. eq
 2. startswith
