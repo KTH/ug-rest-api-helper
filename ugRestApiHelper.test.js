@@ -1,10 +1,11 @@
 const axios = require('axios')
-const { getUGGroups, getUGUsers, getUGGroupsByGroupName } = require('./ugRestApiHelper')
+const { getUGGroups, getUGUsers, getUGGroupsByGroupName, initConnectionProperties } = require('./ugRestApiHelper')
 
 jest.mock('axios')
 
 
 describe('Perform ug Redis call to get data', () => {
+    initConnectionProperties({ ugURL: 'http://localhost:3000', clientId: 'test', clientSecret: 'test', ugTokenURL: 'http://localhost:3000', subscriptionKey: 'test' })
     test('check users data without any filters', async () => {
         axios.get.mockResolvedValueOnce({ data: [] })
         await getUGUsers(null, null, null)
@@ -40,13 +41,13 @@ describe('Perform ug Redis call to get data', () => {
 
     test('check groups data with filter attribute startsWith', async () => {
         axios.get.mockResolvedValueOnce({ data: [] })
-        await getUGGroups('name', 'edu.courses.SF.SF1624.examiner', 'startsWith')
+        await getUGGroups('name', 'edu.courses.SF.SF1624.examiner', 'startswith')
         expect(axios.get).pass('Groups fetch call succeed')
     })
 
     test('check groups data with filter attribute startsWith and expand members', async () => {
         axios.get.mockResolvedValueOnce({ data: [] })
-        await getUGGroupsByGroupName('edu.courses.SF.SF1624.examiner', 'startsWith', true)
+        await getUGGroupsByGroupName('edu.courses.SF.SF1624.examiner', 'startswith', true)
         expect(axios.get).pass('Groups fetch call succeed')
     })
 })
