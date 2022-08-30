@@ -30,18 +30,18 @@ describe('Perform ug Redis call to get data', () => {
     })
     test('check groups data without any filters', async () => {
         axios.get.mockResolvedValueOnce({ data: [] })
-        await getUGGroups(null, null, null)
+        await getUGGroups(null, null, null, false)
         expect(axios.get).pass('Groups fetch call succeed')
     })
     test('check groups data with filter operator eq', async () => {
         axios.get.mockResolvedValueOnce({ data: [] })
-        await getUGGroups('name', 'eq', 'edu.courses.SF.SF1624.examiner')
+        await getUGGroups('name', 'eq', 'edu.courses.SF.SF1624.examiner', true)
         expect(axios.get).pass('Groups fetch call succeed')
     })
 
     test('check groups data with filter attribute startsWith', async () => {
         axios.get.mockResolvedValueOnce({ data: [] })
-        await getUGGroups('name', 'edu.courses.SF.SF1624.examiner', 'startswith')
+        await getUGGroups('name', 'edu.courses.SF.SF1624.examiner', 'startswith', false)
         expect(axios.get).pass('Groups fetch call succeed')
     })
 
