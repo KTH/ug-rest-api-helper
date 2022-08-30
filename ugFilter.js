@@ -32,7 +32,7 @@ class Filter {
                 case IN:
                     let filterDataInString = ''
                     if (Array.isArray(this.value)) {
-                        this.filterData.forEach(data => {
+                        this.value.forEach(data => {
                             filterDataInString += `'${data}',`
                         })
                         filterDataInString = filterDataInString.substring(0, filterDataInString.length - 1)
