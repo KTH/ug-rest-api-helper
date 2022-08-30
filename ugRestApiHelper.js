@@ -48,12 +48,21 @@ const initConnectionProperties = ({ ugURL, clientId, clientSecret, ugTokenURL, s
  * @param {*} groupFilterAttributeName Attribute name needs to be passed to add in filter
  * @param {*} operatorToUseInFilter Operator needs to specify to filter group or groups
  * @param {*} groupFilterAttributeValue This should be the data which needs to be filter out
+ * @param {*} expandMembers This flag will indicate whether members are needed along with groups
  * @returns Will return groups data based on the filter properties
  */
-async function getUGGroups(groupFilterAttributeName, operatorToUseInFilter, groupFilterAttributeValue) {
+async function getUGGroups(groupFilterAttributeName, operatorToUseInFilter, groupFilterAttributeValue, expandMembers) {
     const access_token = await getClientToken(ugConnection)
+    let expandMembersQueryInString = ''
     const filterQueryInString = new Filter(groupFilterAttributeName, operatorToUseInFilter, groupFilterAttributeValue).filterQueryInString
-    const completeUGURLToFetchGroups = ugConnection.ugURL + '/' + GROUPS_DATA_SET_NAME + filterQueryInString
+    if (expandMembers) {
+        if(filterQueryInString !== '') {
+            expandMembersQueryInString = '&$expand=members'
+        } else {
+            expandMembersQueryInString = '?$expand=members'
+        }
+    }
+    const completeUGURLToFetchGroups = ugConnection.ugURL + '/' + GROUPS_DATA_SET_NAME + filterQueryInString + expandMembersQueryInString
     return await fetchData(access_token, completeUGURLToFetchGroups)
 }
 
