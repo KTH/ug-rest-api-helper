@@ -20,12 +20,12 @@ describe('Perform ug Redis call to get data', () => {
 
     test('check users data with filter contains', async () => {
         axios.get.mockResolvedValueOnce({ data: [] })
-        await getUGUsers('givenName', 'Joakim', 'contains')
+        await getUGUsers('givenName', 'contains', 'Joakim',)
         expect(axios.get).pass('Users fetch call succeed')
     })
     test('check users data with filter type In', async () => {
         axios.get.mockResolvedValueOnce({ data: [] })
-        await getUGUsers('memberOf', ['u2m94e93', 'u2m94e94', 'u2m94e95'], 'in')
+        await getUGUsers('memberOf', 'in', ['u2m94e93', 'u2m94e94', 'u2m94e95'])
         expect(axios.get).pass('Users fetch call succeed')
     })
     test('check groups data without any filters', async () => {
