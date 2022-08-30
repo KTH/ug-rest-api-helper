@@ -34,7 +34,7 @@ For groups to fetch there are two methods added.
 # Fetch UG Users
 For user to fetch there is one method.
 1. getUGUsers
-This method will receive `userFilterAttributeName` which indicates property name like 'givenName', 'kthid' etc, `operatorToUseInFilter` like 'eq', 'contains', 'startswith' etc, `userFilterAttributeValue` like 'Joakim' (this will be the filter value to filter out the data)
+This method will receive `userFilterAttributeName` which indicates property name like 'givenName', 'kthid' etc, `operatorToUseInFilter` like 'eq', 'contains', 'startswith' etc, `userFilterAttributeValue` like 'Joakim' (this will be the filter value to filter out the data) and there is a flag `expandMembers`. If this set to true then it will fetch groups along with members.
 
 # Operators supported so far
 There are few filter operators that are supported so far.
