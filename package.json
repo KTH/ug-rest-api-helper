@@ -29,7 +29,7 @@
     "json"
   ],
   "dependencies": {
-    "axios": "^0.26.1"
+    "axios": "^0.27.2"
   },
   "devDependencies": {
     "@kth/eslint-config-kth": "^3.0.6",
