@@ -26,7 +26,7 @@ There are two data set supported so far.
 For groups to fetch there are two methods added.
 
 1. getUGGroups
- This method will receive `groupFilterAttributeName` which indicates property name like 'name', 'kthid' etc, `operatorToUseInFilter` like 'eq', 'contains', 'startswith' etc, `groupFilterAttributeValue` like 'sst' (this will be the filter value to filter out the data).
+ This method will receive `groupFilterAttributeName` which indicates property name like 'name', 'kthid' etc, `operatorToUseInFilter` like 'eq', 'contains', 'startswith' etc, `groupFilterAttributeValue` like 'sst' (this will be the filter value to filter out the data) and there is a flag `expandMembers`. If this set to true then it will fetch groups along with members.
 
 2. getUGGroupsByGroupName
  This method will bring groups along with members if needed. There is a flag `expandMembers`. If this set to true then it will fetch groups along with members. `groupName` needs to pass because filter will preapplied to 'name' only. `operatorToUseInFilter` also needed that how data should filter.
@@ -34,7 +34,7 @@ For groups to fetch there are two methods added.
 # Fetch UG Users
 For user to fetch there is one method.
 1. getUGUsers
-This method will receive `userFilterAttributeName` which indicates property name like 'givenName', 'kthid' etc, `operatorToUseInFilter` like 'eq', 'contains', 'startswith' etc, `userFilterAttributeValue` like 'Joakim' (this will be the filter value to filter out the data) and there is a flag `expandMembers`. If this set to true then it will fetch groups along with members.
+This method will receive `userFilterAttributeName` which indicates property name like 'givenName', 'kthid' etc, `operatorToUseInFilter` like 'eq', 'contains', 'startswith' etc, `userFilterAttributeValue` like 'Joakim' (this will be the filter value to filter out the data).
 
 # Operators supported so far
 There are few filter operators that are supported so far.
