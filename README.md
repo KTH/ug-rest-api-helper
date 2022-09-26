@@ -7,7 +7,7 @@ This project has the implementation of calling UG rest API. It will fetch users 
 # Passing Connection Properties
 UG rest Api requires authentication token to send back data. For that, need to pass few connection parameters first to make sure that there will be no un-authorized response issue during fetching time of UG data set.
 In `ugRestApiHelper` , connection properties needs to be set using `initConnectionProperties` method and in that method following parameters need to pass.
-1. `ugTokenURL` needs to pass to get access token
+1. `authorityURL` needs to pass to get access token. Make sure the url should be without `/oauth2/token`.
 2. `clientId` needs to pass to get access token.
 3. `clientSecret` needs to pass to get access token.
 4. `ugURL` needs to pass. This will be used while fetching UG data.
