@@ -17,8 +17,8 @@ const METHOD_GET = 'GET'
 /**
  * This will initialize connection propties that will be used through out the session
  */
-const initConnectionProperties = ({ ugURL, clientId, clientSecret, ugTokenURL, subscriptionKey }) => {
-    ugConnection = new UGConnectionProperties(ugURL, clientId, clientSecret, ugTokenURL, subscriptionKey)
+const initConnectionProperties = ({ ugURL, clientId, clientSecret, authorityURL, subscriptionKey }) => {
+    ugConnection = new UGConnectionProperties(ugURL, clientId, clientSecret, authorityURL, subscriptionKey)
 }
 
 /**

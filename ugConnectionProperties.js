@@ -1,9 +1,9 @@
 class UGConnectionProperties {
-    constructor(ugURL, clientId, clientSecret, ugTokenURL, subscriptionKey) {
+    constructor(ugURL, clientId, clientSecret, authorityURL, subscriptionKey) {
         this.ugURL = ugURL
         this.clientId = clientId
         this.clientSecret = clientSecret
-        this.ugTokenURL = ugTokenURL
+        this.authorityURL = authorityURL
         this.subscriptionKey = subscriptionKey
     }
 }

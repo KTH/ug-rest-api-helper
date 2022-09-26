@@ -1,9 +1,6 @@
-const { default: axios } = require('axios')
+const { ConfidentialClientApplication } = require('@azure/msal-node')
 
 // constants
-const GRANT_TYPE = 'client_credentials'
-const CONTENT_TYPE = 'application/x-www-form-urlencoded'
-const TOKEN_METHOD_TYPE = 'POST'
 const SCOPE = 'openid'
 
 // token attribute to store to avoid recalling authentication call if it's not expired
@@ -28,29 +25,26 @@ let token = null
 
 /**
  * This will get new access token if token is not expired
- * @param tokenEndPoint Token end point is needed to get token
+ * @param authorityURL Token Authority url is needed
  * @param clientId Client id is needed to authenticate client
  * @param clientSecret Client secret is needed to authenticate client
  * @returns Will return whole token response. In response access_token needs to be extracted
  */
-async function getClientToken({ ugTokenURL, clientId, clientSecret }) {
+async function getClientToken({ authorityURL, clientId, clientSecret }) {
   if (isTokenExpired(token)) {
-    const urlOptions = {
-      method: TOKEN_METHOD_TYPE,
-      url: ugTokenURL,
-      headers: { 'content-type': CONTENT_TYPE },
-      data: new URLSearchParams({
-        grant_type: GRANT_TYPE,
-        client_id: clientId,
-        client_secret: clientSecret,
-        scope: SCOPE,
-      }),
-    }
-    const authenticationResponse = await axios.request(urlOptions)
+    const cca = new ConfidentialClientApplication({
+      auth: {
+        authority: authorityURL,
+        knownAuthorities: [authorityURL],
+        clientId: clientId,
+        clientSecret: clientSecret,
+      },
+    })
+    const authenticationParameters = { scopes: [SCOPE] }
+    const authenticationResponse = await cca.acquireTokenByClientCredential(authenticationParameters)
     if (authenticationResponse) {
-      const { data } = authenticationResponse
-      const { access_token } = data
-      token = access_token
+      const { accessToken } = authenticationResponse
+      token = accessToken
     }
   }
   return token
