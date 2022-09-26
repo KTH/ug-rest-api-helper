@@ -1,6 +1,6 @@
 {
   "name": "@kth/ug-rest-api-helper",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Node.js module to make JSON calls against APIs.",
   "main": "index.js",
   "automaticPublish": "true",
@@ -29,6 +29,7 @@
     "json"
   ],
   "dependencies": {
+    "@azure/msal-node": "^1.14.0",
     "axios": "^0.27.2"
   },
   "devDependencies": {
