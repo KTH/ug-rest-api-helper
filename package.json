@@ -30,7 +30,8 @@
   ],
   "dependencies": {
     "@azure/msal-node": "^1.14.5",
-    "axios": "^1.2.2"
+    "axios": "^1.2.2",
+    "jsonwebtoken": "^9.0.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
