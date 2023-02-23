@@ -1,7 +1,10 @@
-const { ConfidentialClientApplication } = require('@azure/msal-node')
+const axios = require('axios').default
 
 // constants
 const SCOPE = 'openid'
+const GRANT_TYPE = 'client_credentials'
+const CONTENT_TYPE = 'application/x-www-form-urlencoded'
+const TOKEN_METHOD_TYPE = 'POST'
 
 // token attribute to store to avoid recalling authentication call if it's not expired
 let token = null
@@ -32,19 +35,24 @@ let token = null
  */
 async function getClientToken({ authorityURL, clientId, clientSecret }) {
   if (isTokenExpired(token)) {
-    const cca = new ConfidentialClientApplication({
-      auth: {
-        authority: authorityURL,
-        knownAuthorities: [authorityURL],
-        clientId: clientId,
-        clientSecret: clientSecret,
-      },
-    })
-    const authenticationParameters = { scopes: [SCOPE] }
-    const authenticationResponse = await cca.acquireTokenByClientCredential(authenticationParameters)
+    const urlOptions = {
+      method: TOKEN_METHOD_TYPE,
+      url: authorityURL + 'oauth2/token',
+      headers: { 'content-type': CONTENT_TYPE },
+      data: new URLSearchParams({
+        grant_type: GRANT_TYPE,
+        client_id: clientId,
+        client_secret: clientSecret,
+        scope: SCOPE,
+      }),
+    }
+    const authenticationResponse = await axios.request(urlOptions)
     if (authenticationResponse) {
-      const { accessToken } = authenticationResponse
-      token = accessToken
+      const { data } = authenticationResponse
+      if (data) {
+        const { access_token } = data
+        token = access_token
+      }
     }
   }
   return token
