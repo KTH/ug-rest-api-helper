@@ -1,7 +1,7 @@
 const axios = require('axios').default
+const { ConfidentialClientApplication } = require('@azure/msal-node')
 
 // constants
-const SCOPE = 'openid'
 const GRANT_TYPE = 'client_credentials'
 const CONTENT_TYPE = 'application/x-www-form-urlencoded'
 const TOKEN_METHOD_TYPE = 'POST'
@@ -31,28 +31,24 @@ let token = null
  * @param authorityURL Token Authority url is needed
  * @param clientId Client id is needed to authenticate client
  * @param clientSecret Client secret is needed to authenticate client
+ * @param scope Allowed scope for token
  * @returns Will return whole token response. In response access_token needs to be extracted
  */
-async function getClientToken({ authorityURL, clientId, clientSecret }) {
+async function getClientToken({ authorityURL, clientId, clientSecret, scope }) {
   if (isTokenExpired(token)) {
-    const urlOptions = {
-      method: TOKEN_METHOD_TYPE,
-      url: authorityURL + 'oauth2/token',
-      headers: { 'content-type': CONTENT_TYPE },
-      data: new URLSearchParams({
-        grant_type: GRANT_TYPE,
-        client_id: clientId,
-        client_secret: clientSecret,
-        scope: SCOPE,
-      }),
-    }
-    const authenticationResponse = await axios.request(urlOptions)
-    if (authenticationResponse) {
-      const { data } = authenticationResponse
-      if (data) {
-        const { access_token } = data
-        token = access_token
-      }
+    const confidentialClientApplication = new ConfidentialClientApplication({
+      auth: {
+        authority: authorityURL,
+        knownAuthorities: [authorityURL],
+        clientId: clientId,
+        clientSecret: clientSecret,
+      },
+    })
+    const authenticationParameters = { scopes: [scope]}
+    const tokenAcquireResponse = await confidentialClientApplication.acquireTokenByClientCredential(authenticationParameters)
+    if (tokenAcquireResponse) {
+      const { accessToken } = tokenAcquireResponse
+      token = accessToken
     }
   }
   return token

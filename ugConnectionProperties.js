@@ -5,6 +5,7 @@ class UGConnectionProperties {
         this.clientSecret = clientSecret
         this.authorityURL = authorityURL
         this.subscriptionKey = subscriptionKey
+        this.scope = scope
     }
 }
 
