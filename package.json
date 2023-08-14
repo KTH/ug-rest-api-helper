@@ -30,7 +30,7 @@
   ],
   "dependencies": {
     "axios": "^1.4.0",
-    "@azure/msal-node": "^1.18.0"
+    "@azure/msal-node": "^2.0.1"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",
