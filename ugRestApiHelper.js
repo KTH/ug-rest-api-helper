@@ -6,7 +6,7 @@ const { UGConnectionProperties } = require('./ugConnectionProperties')
 const { Filter } = require('./ugFilter')
 
 // connection object which contains ug rest api connection properties
-let ugConnection = new UGConnectionProperties(null, null, null, null, null)
+let ugConnection = new UGConnectionProperties(null, null, null, null, null, null)
 // fixed attribute values to be used in functions
 const GROUP_ATTRIBUTE_NAME_FOR_FILTER_QUERY = 'name'
 const GROUPS_DATA_SET_NAME = 'groups'
