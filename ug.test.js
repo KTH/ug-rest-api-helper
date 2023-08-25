@@ -14,12 +14,12 @@ describe('Test ug filter queries', () => {
     })
 
     test('check with filter contains', async () => {
-        const givenName = faker.name.firstName()
+        const givenName = faker.person.firstName()
         const filterQuery = new Filter('givenName', 'contains', givenName).filterQueryInString
         expect(filterQuery).toStrictEqual(`?$filter=contains(givenName,'${givenName}')`)
     })
     test('check with filter type In', async () => {
-        const ids = [faker.datatype.uuid(), faker.datatype.uuid(), faker.datatype.uuid()]
+        const ids = [faker.string.uuid(), faker.string.uuid(), faker.string.uuid()]
         const filterQuery = new Filter('memberOf', 'in', ids).filterQueryInString
         expect(filterQuery).toStrictEqual(`?$filter=memberOf in ('${ids[0]}','${ids[1]}','${ids[2]}')`)
     })
