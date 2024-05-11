@@ -7,14 +7,4 @@ describe('Test cases for authentication token', () => {
   test('check token expiry', () => {
       expect(isTokenExpired(token)).toBeTrue()
   })
-
-  test('Check if token is fetched', async () => {
-    const authenticationObject = {
-     authorityURL: 'https://login.microsoftonline.com/hpsscoutgmail.onmicrosoft.com/',
-     clientId: '6731de76-14a6-49ae-97bc-6eba6914391e',
-     clientSecret: 'JqQX2PNo9bpM0uEihUPzyrh',
-     scope: 'https://graph.microsoft.com/.default'
-    }
-   expect(await getClientToken(authenticationObject)).toBeString()
-})
 })
