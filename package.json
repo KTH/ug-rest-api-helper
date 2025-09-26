@@ -45,6 +45,10 @@
     "prettier": "^3.0.0",
     "pretty-quick": "^3.1.2"
   },
+  "homepage": "https://github.com/KTH/ug-rest-api-helper",
+  "publishConfig": {
+    "access": "public"
+  },
   "// (prettier)": "configuration version 2020-06-15 - might also reside in .prettierrc.json",
   "prettier": {
     "arrowParens": "avoid",
