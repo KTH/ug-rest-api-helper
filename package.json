@@ -29,8 +29,8 @@
     "json"
   ],
   "dependencies": {
-    "@azure/msal-node": "^2.1.0",
-    "axios": "^1.4.0"
+    "@azure/msal-node": "^2.16.3",
+    "axios": "^1.12.2"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
