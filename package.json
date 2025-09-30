@@ -1,6 +1,6 @@
 {
   "name": "@kth/ug-rest-api-helper",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "Node.js module to make JSON calls against APIs.",
   "main": "index.js",
   "automaticPublish": "true",
@@ -44,6 +44,10 @@
     "jest-extended": "^4.0.2",
     "lint-staged": "^16.2.3",
     "prettier": "^3.6.2"
+  },
+  "homepage": "https://github.com/KTH/ug-rest-api-helper",
+  "publishConfig": {
+    "access": "public"
   },
   "// (prettier)": "configuration version 2020-06-15 - might also reside in .prettierrc.json",
   "prettier": {
