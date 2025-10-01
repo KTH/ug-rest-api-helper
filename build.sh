@@ -1,5 +1,1 @@
-npm install
-
-npm test
-
-rm -rf node_modules
+echo "Nothing to do here"

@@ -21,7 +21,7 @@
     "jest:watch-update": "jest --watch -u",
     "build": "./build.sh",
     "prettier:all": "prettier --write \"**/*.js\"",
-    "prepare": "husky"
+    "prepare": "if [ -f ./node_modules/.bin/husky ]; then husky; fi"
   },
   "keywords": [
     "api",
